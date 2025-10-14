@@ -1,8 +1,9 @@
 #pragma once
 
-#include <iostream.h>
+#include <iostream>
+#include <string>
 
-//Car class with constructor, destructori, copy constructor and assignment operator."
+//Car class with constructor, destructor, copy constructor and assignment operator."
 using namespace std;
 
 class Car {
@@ -46,9 +47,12 @@ public:
 		model = assignFrom.model;
 		licensePlate = assignFrom.licensePlate;
 	} */
+
+	
 private :
 	int year;
 	string make;
 	string model;
 	string licensePlate;
 };
+int carInventory();

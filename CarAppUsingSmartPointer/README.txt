@@ -53,7 +53,24 @@ Debugging: Easier to step through and identify which allocation failed
 
 Code Clarity: More readable and explicit about resource management
 /**************************************************************************
-* 		Modern C++ Alternative					  *
-* 	Use std::make_shared or std::make_unique instead		  *
+* 		Modern C++ Alternative					                          *
+* 	Use std::make_shared or std::make_unique instead		              *
 ***************************************************************************
 
+
+Building my 1st project via cmake
+
+1. Write CMake files : In main project dir (eg CarAppUsingSmartPointer)
+    Bare minimum requirement for writing a CMakeListsFile.txt
+    - add min cmake version
+    - Languages used
+    - project name and what CXX standard it should use
+    - Look for source files and add to executable
+    - tell the compiker where to find hte header files ie add directories to include search path 
+2. Install cmake if not already installed. 
+3. Build and run: 
+    mkdir build
+    cd build; cmake ..
+    cmake --build .
+    la -al  #check if .exe is created or not
+    run the executable eg: ./carInventoryCheck.exe
