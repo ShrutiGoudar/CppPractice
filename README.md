@@ -60,3 +60,11 @@ Week4_Integration/
 Push code every 2–3 days (no need daily)
 
 Add a small README.md with what you learned in each week
+
+---------------------------------------------------------
+Commit Steps :
+---------------------------------------------------------
+Sinc eI am working on windows machine and using https with a personal token to connect to my github account :
+set :  pushURLPTA="https://ShrutiGoudar:ghp*********@github.com/ShrutiGoudar"
+
+git push $pushURLPTA/<repoName.git> <branchname>
