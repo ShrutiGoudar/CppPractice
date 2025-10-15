@@ -8,7 +8,12 @@ using namespace std;
 
 class Car {
 public: 
-	Car(){
+	Car():
+	year{2000},
+	model{"BMW"},
+	licensePlate{"007"},
+	make{"unknown"} 
+	{
 		cout << "Car created" << endl;
 	}
 	~Car(){
@@ -47,7 +52,50 @@ public:
 		model = assignFrom.model;
 		licensePlate = assignFrom.licensePlate;
 	} */
-
+	//Move Constructor
+	Car(Car&& obj) :
+		year{obj.year},
+		make{std::move(obj.make)},          // MOVE the string resources
+		model{std::move(obj.model)},        // Transfer ownership
+		licensePlate{std::move(obj.licensePlate)} {
+		cout << "user defined move constructor called" << endl;
+		
+		// Reset moved-from object (optional but good practice)
+		obj.year = 0;
+		obj.make = "";
+		obj.model = "";
+		obj.licensePlate = "";
+	}
+	//Move assignment operator 
+	Car& operator=(Car&& moveFrom){
+		cout << "Move assignment operator called" << endl;
+		if (this == &moveFrom) {
+			return *this; // handle self assignment car1 = car1
+		}
+		
+		// Move the data from moveFrom to this object
+		year = moveFrom.year;  //No ownership concept: Integers are just values, not resources
+								/* Copy is cheap: Copying an int is as fast as moving it
+								No internal resources: No dynamic memory or handles to transfer
+								std::move() has no effect: Moving an int is identical to copying it */
+		make = std::move(moveFrom.make);
+		model = std::move(moveFrom.model);	//Strings often allocate dynamic memory for their character data
+		licensePlate = std::move(moveFrom.licensePlate); 	//std::move enables optimization and avoids unnecessary memory allocation and copying
+		
+		// Reset the moved-from object to a valid but unspecified state
+		moveFrom.year = 0;
+		moveFrom.make = "";
+		moveFrom.model = "";
+		moveFrom.licensePlate = "";
+		//  incase there are pointer objects , they need to be freed : delete[] var
+		return *this;
+	} 
+	void display() {
+		cout << " Year 			: " << year << endl;
+		cout << " Model 			: " << model << endl;
+		cout << " Make 			: " << make << endl;
+		cout << " licensePlate 		: " << licensePlate << endl;
+	}
 	
 private :
 	int year;
